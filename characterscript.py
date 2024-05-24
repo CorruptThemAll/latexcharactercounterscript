@@ -3,10 +3,12 @@ import os
 
 def strip_commands(text):
     """
-    Remove LaTeX commands from the text.
+    Remove LaTeX commands from the text, excluding chapter, section, and subsection.
     """
     # Pattern to remove LaTeX commands
-    text = re.sub(r'\\[a-zA-Z]+\{.*?\}', '', text)  # Removes commands like \command{arg}
+    commands_to_exclude = ['chapter', 'section', 'subsection']
+    command_pattern = r'\\(?!' + '|'.join(commands_to_exclude) + r')[a-zA-Z]+\{.*?\}'
+    text = re.sub(command_pattern, '', text)  # Removes commands like \command{arg}
     text = re.sub(r'\\[a-zA-Z]+\[.*?\]', '', text)  # Removes commands like \command[arg]
     text = re.sub(r'\\[a-zA-Z]+\*?\b', '', text)    # Removes commands like \command or \command*
     text = re.sub(r'\\[a-zA-Z]+\d?', '', text)      # Removes commands like \command1
