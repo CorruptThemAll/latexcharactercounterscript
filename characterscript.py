@@ -47,7 +47,7 @@ def count_characters(file_path):
     return char_count
 
 if __name__ == "__main__":
-    folder_path = 'C:\\Users\\Lukas\\source\\repos\\latexcharactercounterscript\\files'
+    folder_path = 'files'
     print(folder_path)
     file_paths = [os.path.join(folder_path, file) for file in os.listdir(folder_path) if file.endswith('.tex')]
     total_char_count = 0
